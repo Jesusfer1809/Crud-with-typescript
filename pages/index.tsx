@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 // import Image from 'next/image'
@@ -11,20 +11,14 @@ import Layout from 'components/Layout'
 import TaskComponent from 'components/TaskComponent'
 import { Toaster } from 'react-hot-toast'
 import DeleteModal from 'components/DeleteModal'
+import TasksContext from 'context/Tasks/TasksContext'
 
 // interface Props {
 //   characters: Character[]
 // }
 
 const Home: NextPage = () => {
-  const tasks: TaskStructure[] = [
-    {
-      id: 1,
-      title: 'Clean the house',
-      description: 'You have to do the housework',
-      creator: 'Jesus'
-    }
-  ]
+  const { tasks } = useContext(TasksContext)
 
   const [modal, setModal] = useState<ModalState>({
     id: undefined,

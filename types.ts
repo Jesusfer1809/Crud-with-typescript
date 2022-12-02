@@ -23,6 +23,20 @@ export interface TaskStructure {
   id?: number | string
 }
 
+export type ID = string | number
+
+export interface TasksContextInterface {
+  tasks: TaskStructure[]
+  createTask: (task: TaskStructure) => void
+  getTask: (id: ID) => TaskStructure | undefined
+  updateTask: (newTask: TaskStructure) => void
+  deleteTask: (id: ID) => void
+}
+
+export interface TasksState {
+  tasks: TaskStructure[]
+}
+
 export interface BasicTaskStructure {
   title: string
   description: string

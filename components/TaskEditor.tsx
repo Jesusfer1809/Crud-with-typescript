@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 import toast from 'react-hot-toast'
 
-// import TasksContext from '../context/Tasks/TasksContext'
+import TasksContext from '../context/Tasks/TasksContext'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-// import { v4 as uuidv4 } from 'uuid'
-// import { trimDate } from '../utils/functions'
+import { v4 as uuidv4 } from 'uuid'
+import {
+  // trimDate,
+  defaultToastStyle,
+  getErrorMessage
+} from '../utils/functions'
 import { TaskStructure } from 'types'
-import { defaultToastStyle, getErrorMessage } from 'utils/functions'
 
 interface TaskEditorProps {
   isEditing?: boolean
@@ -16,7 +19,8 @@ interface TaskEditorProps {
 }
 
 function TaskEditor({ isEditing, prevTask }: TaskEditorProps): JSX.Element {
-  //   const { createTask, updateTask, tasks } = useContext(TasksContext)
+  const { createTask } = useContext(TasksContext)
+
   const router = useRouter()
 
   const [task, setTask] = useState<TaskStructure>({
@@ -46,7 +50,8 @@ function TaskEditor({ isEditing, prevTask }: TaskEditorProps): JSX.Element {
 
       if (isEditing !== true) {
         // If it is not editing, then it is creating a task
-        //   createTask([{ ...task, id: uuidv4(), createdAt: trimDate(Date.now()) }])
+        // , createdAt: trimDate(Date.now())
+        createTask({ ...task, id: uuidv4(), creator: 'Jesus' })
         toast.success('New task created!!', {
           style: defaultToastStyle
         })
