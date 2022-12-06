@@ -19,7 +19,7 @@ interface TaskEditorProps {
 }
 
 function TaskEditor({ isEditing, prevTask }: TaskEditorProps): JSX.Element {
-  const { createTask } = useContext(TasksContext)
+  const { createTask, updateTask } = useContext(TasksContext)
 
   const router = useRouter()
 
@@ -56,7 +56,7 @@ function TaskEditor({ isEditing, prevTask }: TaskEditorProps): JSX.Element {
           style: defaultToastStyle
         })
       } else {
-        //   updateTask(task.id, task)
+        updateTask(task)
         toast.success('Task updated!!', {
           style: defaultToastStyle
         })

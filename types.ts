@@ -23,7 +23,7 @@ export interface TaskStructure {
   id?: number | string
 }
 
-export type ID = string | number
+export type ID = string | number | undefined
 
 export interface TasksContextInterface {
   tasks: TaskStructure[]

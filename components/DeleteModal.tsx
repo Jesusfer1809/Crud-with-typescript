@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import toast from 'react-hot-toast'
 import { ModalState } from 'types'
-// import TasksContext from '../context/Tasks/TasksContext'
+import TasksContext from '../context/Tasks/TasksContext'
 
 interface ModalComponentProps {
   modalState: ModalState
@@ -13,14 +13,14 @@ function DeleteModal({
   modalState,
   closeModal
 }: ModalComponentProps): JSX.Element {
-  //   const { deleteTask } = useContext(TasksContext)
+  const { deleteTask } = useContext(TasksContext)
 
   //   const handleCloseModal = () => {
   //     setModal({ id: undefined, isOpened: false })
   //   }
 
   const confirmDelete = (): void => {
-    // deleteTask(modalState.id)
+    deleteTask(modalState.id)
     toast.success('Task deleted', {
       style: {
         borderRadius: '2px',
