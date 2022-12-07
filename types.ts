@@ -16,11 +16,32 @@ export interface QueryId extends ParsedUrlQuery {
   id: string
 }
 
+export interface AxiosResult {
+  status: string
+  data: AxiosData
+}
+
+export interface AxiosData {
+  tasks: TaskStructure[]
+}
+
+export interface AxiosSingleResult {
+  status: string
+  data: AxiosSingleData
+}
+
+export interface AxiosSingleData {
+  task: TaskStructure
+}
+
 export interface TaskStructure {
   title: string
   description: string
   creator?: string
   id?: number | string
+  _id?: number | string
+  createdAt?: Date
+  updatedAt?: Date
 }
 
 export type ID = string | number | undefined

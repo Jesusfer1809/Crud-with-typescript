@@ -1,31 +1,50 @@
 import Head from 'next/head'
 
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Toaster } from 'react-hot-toast'
 
 import Link from 'next/link'
-import { GetServerSideProps, NextPage } from 'next'
+import { NextPage } from 'next'
 import Layout from 'components/Layout'
-import TasksContext from 'context/Tasks/TasksContext'
-import { ID, TaskStructure } from 'types'
 
-interface TaskPageProps {
-  id: ID
-}
+import axios from 'axios'
+import { useSession } from 'next-auth/react'
+import { AxiosSingleResult, TaskStructure } from 'types'
+import { useRouter } from 'next/router'
 
-const TaskShowcase: NextPage<TaskPageProps> = ({ id }) => {
-  const { getTask, tasks } = useContext(TasksContext)
+// interface TaskPageProps {
+//   task: TaskStructure
+// }
 
-  const [task, setTask] = useState<TaskStructure | undefined>(undefined)
+const TaskShowcase: NextPage = (): JSX.Element => {
+  const { data: session } = useSession()
+
+  const [task, setTask] = useState<TaskStructure>()
+  const router = useRouter()
+  const id = router.query.id
 
   useEffect(() => {
-    const requiredTask = getTask(id)
-    if (requiredTask !== undefined) {
-      setTask(requiredTask)
-    }
-  }, [tasks, getTask, id])
+    const fetchTasks = async (): Promise<void> => {
+      try {
+        const { data }: { data: AxiosSingleResult } = await axios.get(
+          `http://localhost:3000/api/tasks/${id as string}`
+        )
 
+        const {
+          data: { task }
+        } = data
+
+        setTask(task)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+    if (session !== null) {
+      void fetchTasks()
+    }
+  }, [session, id])
   return (
     <div className='bg-gray-800'>
       <Head>
@@ -53,8 +72,10 @@ const TaskShowcase: NextPage<TaskPageProps> = ({ id }) => {
 
         <p className='block mt-10'>{task?.description}</p>
 
-        <div className='mt-20 text-sm'>ID: {task?.id}</div>
-        <div className='mt-4 text-sm'>Created at: {Date.now()}</div>
+        <div className='mt-20 text-sm'>ID: {task?._id}</div>
+        <div className='mt-4 text-sm'>
+          Created at: {String(task?.createdAt)}
+        </div>
       </Layout>
       <Toaster position='top-right' reverseOrder={false} />
     </div>
@@ -64,12 +85,23 @@ const TaskShowcase: NextPage<TaskPageProps> = ({ id }) => {
 export default TaskShowcase
 
 // eslint-disable-next-line @typescript-eslint/require-await
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const id = ctx.params?.id as ID
+// export const getServerSideProps: GetServerSideProps = async (ctx) => {
+//   const baseURL = process.env.BASE_URL
+//   const id = ctx.params?.id as ID
 
-  return {
-    props: {
-      id
-    }
-  }
-}
+//   const { data }: { data: AxiosSingleResult } = await axios.get(
+//     `${baseURL !== undefined ? baseURL : ''}/api/tasks/${
+//       id !== undefined ? id : ''
+//     }`
+//   )
+
+//   const {
+//     data: { task }
+//   } = data
+
+//   return {
+//     props: {
+//       task
+//     }
+//   }
+// }

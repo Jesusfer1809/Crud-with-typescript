@@ -37,7 +37,7 @@ module.exports = {
       'warn',
       { path: 'always', types: 'always', lib: 'always' }
     ],
-    'multiline-ternary': ['error', 'never'],
+    'multiline-ternary': 'off',
     '@typescript-eslint/no-misused-promises': [
       'error',
       { checksVoidReturn: false }

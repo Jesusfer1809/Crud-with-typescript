@@ -2,12 +2,21 @@
 import React from 'react'
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
+import { Session } from 'next-auth'
 import TasksState from '../context/Tasks/TasksState'
+import { SessionProvider } from 'next-auth/react'
 
-function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+function MyApp({
+  Component,
+  pageProps
+}: AppProps<{
+  session: Session
+}>): JSX.Element {
   return (
     <TasksState>
-      <Component {...pageProps} />
+      <SessionProvider session={pageProps.session}>
+        <Component {...pageProps} />
+      </SessionProvider>
     </TasksState>
   )
 }
