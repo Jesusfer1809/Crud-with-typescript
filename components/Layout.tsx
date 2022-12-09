@@ -3,7 +3,7 @@ import Footer from './Footer'
 import Navbar from './Navbar'
 
 interface LayoutProps {
-  children: React.ReactNode
+  children: React.ReactNode | React.ReactNode[]
   isInIndex: boolean
 }
 

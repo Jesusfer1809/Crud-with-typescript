@@ -1,26 +1,31 @@
-import React, { useContext } from 'react'
+import axios from 'axios'
+
+import React from 'react'
 import toast from 'react-hot-toast'
 import { ModalState } from 'types'
-import TasksContext from '../context/Tasks/TasksContext'
 
 interface ModalComponentProps {
   modalState: ModalState
 
   closeModal: () => void
+  reRender: () => void
 }
 
 function DeleteModal({
   modalState,
-  closeModal
+  closeModal,
+  reRender
 }: ModalComponentProps): JSX.Element {
-  const { deleteTask } = useContext(TasksContext)
-
   //   const handleCloseModal = () => {
   //     setModal({ id: undefined, isOpened: false })
   //   }
 
-  const confirmDelete = (): void => {
-    deleteTask(modalState.id)
+  const confirmDelete = async (): Promise<void> => {
+    await axios.delete(
+      `http://localhost:3000/api/tasks/${
+        modalState.id !== undefined ? modalState.id : ''
+      }`
+    )
     toast.success('Task deleted', {
       style: {
         borderRadius: '2px',
@@ -30,6 +35,7 @@ function DeleteModal({
     })
 
     closeModal()
+    reRender()
   }
 
   return (

@@ -21,7 +21,6 @@ export default async function handler(
           const tasks: TaskStructure[] = await Task.find({
             creator: session.user?.email
           })
-          console.log(tasks)
 
           return res.status(200).json({
             status: 'success',

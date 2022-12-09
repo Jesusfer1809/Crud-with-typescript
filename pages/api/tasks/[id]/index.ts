@@ -12,7 +12,8 @@ export default async function handler(
 ): Promise<void> {
   await dbConnect()
   const session = await unstable_getServerSession(req, res, authOptions)
-  console.log(session)
+
+  console.log(req.query.id)
   const id = req.query.id
 
   try {
@@ -71,6 +72,7 @@ export default async function handler(
             .status(404)
             .json({ message: 'Task not found with that ID!' })
         }
+        console.log('deleting')
         return res.status(204).json({
           status: 'success',
           data: null

@@ -53,29 +53,35 @@ const TaskShowcase: NextPage = (): JSX.Element => {
       </Head>
 
       <Layout isInIndex={true}>
-        <div className=''>
-          <Link href='/' className='block'>
-            <span className=' inline-block  text-blue-300 border-b border-b-blue-300 cursor-pointer'>
-              &larr; Back
-            </span>
-          </Link>
-        </div>
-
-        <div className='flex justify-between w-full mt-16'>
-          <span className='text-3xl font-medium'>{task?.title}</span>
-          <Link href={`/task/${task?.id !== undefined ? task.id : ''}/edit`}>
-            <div className='px-4 flex items-center rounded-md bg-teal-500 font-medium cursor-pointer'>
-              Edit
+        {task !== undefined ? (
+          <>
+            <div className=''>
+              <Link href='/' className='block'>
+                <span className=' inline-block  text-blue-300 border-b border-b-blue-300 cursor-pointer'>
+                  &larr; Back
+                </span>
+              </Link>
             </div>
-          </Link>
-        </div>
 
-        <p className='block mt-10'>{task?.description}</p>
+            <div className='flex justify-between w-full mt-16'>
+              <span className='text-3xl font-medium'>{task?.title}</span>
+              <Link href={`/task/${task._id as string}/edit`}>
+                <div className='px-4 flex items-center rounded-md bg-teal-500 font-medium cursor-pointer'>
+                  Edit
+                </div>
+              </Link>
+            </div>
 
-        <div className='mt-20 text-sm'>ID: {task?._id}</div>
-        <div className='mt-4 text-sm'>
-          Created at: {String(task?.createdAt)}
-        </div>
+            <p className='block mt-10'>{task?.description}</p>
+
+            <div className='mt-20 text-sm'>ID: {task?._id}</div>
+            <div className='mt-4 text-sm'>
+              Created at: {String(task?.createdAt)}
+            </div>
+          </>
+        ) : (
+          <h1>Loading</h1>
+        )}
       </Layout>
       <Toaster position='top-right' reverseOrder={false} />
     </div>

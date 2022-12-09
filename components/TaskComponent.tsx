@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React from 'react'
+import React, { ReactElement } from 'react'
 
 import { BsTrash } from 'react-icons/bs'
 import { TaskStructure } from 'types'
@@ -14,7 +14,7 @@ function TaskComponent({
   task,
   index,
   openModal
-}: TaskComponentProps): JSX.Element {
+}: TaskComponentProps): ReactElement {
   const handleDelete = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void => {

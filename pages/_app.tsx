@@ -5,6 +5,7 @@ import type { AppProps } from 'next/app'
 import { Session } from 'next-auth'
 import TasksState from '../context/Tasks/TasksState'
 import { SessionProvider } from 'next-auth/react'
+import { useRouter } from 'next/router'
 
 function MyApp({
   Component,
@@ -12,10 +13,11 @@ function MyApp({
 }: AppProps<{
   session: Session
 }>): JSX.Element {
+  const router = useRouter()
   return (
     <TasksState>
       <SessionProvider session={pageProps.session}>
-        <Component {...pageProps} />
+        <Component key={router.asPath} {...pageProps} />
       </SessionProvider>
     </TasksState>
   )

@@ -1,17 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import toast from 'react-hot-toast'
 
-import TasksContext from '../context/Tasks/TasksContext'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { v4 as uuidv4 } from 'uuid'
+
 import {
   // trimDate,
   defaultToastStyle,
   getErrorMessage
 } from '../utils/functions'
 import { TaskStructure } from 'types'
+import axios from 'axios'
 
 interface TaskEditorProps {
   isEditing?: boolean
@@ -19,8 +19,6 @@ interface TaskEditorProps {
 }
 
 function TaskEditor({ isEditing, prevTask }: TaskEditorProps): JSX.Element {
-  const { createTask, updateTask } = useContext(TasksContext)
-
   const router = useRouter()
 
   const [task, setTask] = useState<TaskStructure>({
@@ -51,12 +49,18 @@ function TaskEditor({ isEditing, prevTask }: TaskEditorProps): JSX.Element {
       if (isEditing !== true) {
         // If it is not editing, then it is creating a task
         // , createdAt: trimDate(Date.now())
-        createTask({ ...task, id: uuidv4(), creator: 'Jesus' })
+        await axios.post('http://localhost:3000/api/tasks', task)
         toast.success('New task created!!', {
           style: defaultToastStyle
         })
       } else {
-        updateTask(task)
+        console.log('updating')
+        await axios.patch(
+          `http://localhost:3000/api/tasks/${
+            task._id !== undefined ? task._id : ''
+          }`,
+          task
+        )
         toast.success('Task updated!!', {
           style: defaultToastStyle
         })
