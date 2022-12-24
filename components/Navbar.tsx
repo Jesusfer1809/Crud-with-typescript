@@ -49,7 +49,6 @@ function Navbar({ isInIndex, isInSignIn = false }: NavbarProps): JSX.Element {
           <>
             {!isInSignIn && (
               <div className='flex space-x-4 items-center'>
-                Not signed in <br />
                 <button
                   className='px-4 py-2 bg-teal-500 rounded-md'
                   onClick={async () => await signIn()}
