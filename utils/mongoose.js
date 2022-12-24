@@ -10,7 +10,7 @@ export async function dbConnect() {
     return
   }
 
-  const db = await connect(process.env.MONGODB_URL)
+  const db = await connect(process.env.MONGODB_URI)
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
   conn.isConnected = db.connections[0].readyState
 }
