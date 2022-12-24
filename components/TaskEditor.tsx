@@ -49,14 +49,17 @@ function TaskEditor({ isEditing, prevTask }: TaskEditorProps): JSX.Element {
       if (isEditing !== true) {
         // If it is not editing, then it is creating a task
         // , createdAt: trimDate(Date.now())
-        await axios.post('http://localhost:3000/api/tasks', task)
+        await axios.post(
+          `${process.env.NEXT_PUBLIC_BASE_URL as string}/api/tasks`,
+          task
+        )
         toast.success('New task created!!', {
           style: defaultToastStyle
         })
       } else {
         console.log('updating')
         await axios.patch(
-          `http://localhost:3000/api/tasks/${
+          `${process.env.NEXT_PUBLIC_BASE_URL as string}/api/tasks/${
             task._id !== undefined ? task._id : ''
           }`,
           task

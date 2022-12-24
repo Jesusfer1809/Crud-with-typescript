@@ -22,7 +22,7 @@ function DeleteModal({
 
   const confirmDelete = async (): Promise<void> => {
     await axios.delete(
-      `http://localhost:3000/api/tasks/${
+      `${process.env.NEXT_PUBLIC_BASE_URL as string}/api/tasks/${
         modalState.id !== undefined ? modalState.id : ''
       }`
     )

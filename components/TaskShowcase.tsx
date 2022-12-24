@@ -15,7 +15,7 @@ function TaskShowcase({ openModal }: TaskShowcaseProps): JSX.Element {
   const fetchTasks = async (): Promise<void> => {
     try {
       const { data }: { data: AxiosResult } = await axios.get(
-        'http://localhost:3000/api/tasks'
+        `${process.env.NEXT_PUBLIC_BASE_URL as string}/api/tasks`
       )
 
       const {

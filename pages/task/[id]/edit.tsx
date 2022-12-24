@@ -21,7 +21,9 @@ const TaskEdit: NextPage<EditPageProps> = ({ id }) => {
     const fetchTasks = async (): Promise<void> => {
       try {
         const { data }: { data: AxiosSingleResult } = await axios.get(
-          `http://localhost:3000/api/tasks/${id as string}`
+          `${process.env.NEXT_PUBLIC_BASE_URL as string}/api/tasks/${
+            id as string
+          }`
         )
 
         const {
