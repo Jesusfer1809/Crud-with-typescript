@@ -104,7 +104,7 @@ function TaskEditor({ isEditing, prevTask }: TaskEditorProps): JSX.Element {
             placeholder='Task title...'
             onChange={handleChange}
             value={task?.title}
-            className='w-full px-4 py-2 rounded-sm text-gray-900'
+            className='w-full px-4 py-2 rounded-sm text-gray-900 border-2 border-transparent  focus:outline-teal-500 focus:border-2 focus:border-teal-500'
           />
         </fieldset>
 
@@ -120,7 +120,7 @@ function TaskEditor({ isEditing, prevTask }: TaskEditorProps): JSX.Element {
             onChange={handleChange}
             value={task?.description}
             placeholder='Task description...'
-            className='w-full px-4 py-2 rounded-sm text-gray-900'
+            className='w-full px-4 py-2 rounded-sm text-gray-900 border-2 border-transparent  focus:outline-teal-500 focus:border-2 focus:border-teal-500'
           ></textarea>
         </fieldset>
 

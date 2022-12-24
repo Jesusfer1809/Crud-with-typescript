@@ -28,7 +28,9 @@ function TaskComponent({
         <div className='flex items-center text-2xl'>{index}</div>
         <div className='flex-grow flex flex-col space-y-5'>
           <div className='flex justify-between items-center flex-wrap'>
-            <span className='text-lg font-medium mr-4 mb-3'>{task.title}</span>
+            <span className='text-lg md:text-xl lg:text-2xl font-medium mr-4 mb-3'>
+              {task.title}
+            </span>
             <button
               onClick={handleDelete}
               className='bg-red-600 px-4 py-1 flex items-center space-x-1 rounded-sm'

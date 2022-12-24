@@ -40,7 +40,7 @@ const Home: NextPage = () => {
   }
 
   return (
-    <div className='bg-gray-800'>
+    <div className='bg-gray-800 font-roboto'>
       <Head>
         <title>Task Man</title>
         <link rel='icon' href='/favicon.ico' />

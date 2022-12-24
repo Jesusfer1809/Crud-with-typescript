@@ -17,7 +17,7 @@ import { useRouter } from 'next/router'
 //   task: TaskStructure
 // }
 
-const TaskShowcase: NextPage = (): JSX.Element => {
+const TaskShowcase: NextPage = () => {
   const { data: session } = useSession()
 
   const [task, setTask] = useState<TaskStructure>()
@@ -46,7 +46,7 @@ const TaskShowcase: NextPage = (): JSX.Element => {
     }
   }, [session, id])
   return (
-    <div className='bg-gray-800'>
+    <div className='bg-gray-800 font-roboto'>
       <Head>
         <title>Task Man || {task?.id}</title>
         <link rel='icon' href='/favicon.ico' />

@@ -40,7 +40,7 @@ function DeleteModal({
 
   return (
     <div
-      className={`absolute top-0 left-0 z-[99999] bg-gray-900 w-full h-full bg-opacity-50 ${
+      className={`fixed top-0 left-0 z-[99999] bg-gray-900 w-full h-full bg-opacity-50 ${
         modalState.isOpened ? 'flex' : 'hidden'
       } justify-center items-center px-4`}
       onClick={closeModal}

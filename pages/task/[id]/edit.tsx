@@ -40,7 +40,7 @@ const TaskEdit: NextPage<EditPageProps> = ({ id }) => {
   }, [id, session])
 
   return (
-    <div className='bg-gray-800'>
+    <div className='bg-gray-800 font-roboto'>
       <Head>
         <title>Task Man || Edit</title>
         <link rel='icon' href='/favicon.ico' />

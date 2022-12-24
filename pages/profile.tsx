@@ -2,10 +2,12 @@ import React from 'react'
 import Layout from 'components/Layout'
 import Head from 'next/head'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Toaster } from 'react-hot-toast'
 import { NextPage } from 'next'
 
 import { useSession } from 'next-auth/react'
+import imageLoader from 'imageLoader'
 // import Image from 'next/image'
 
 const ProfilePage: NextPage = () => {
@@ -16,14 +18,14 @@ const ProfilePage: NextPage = () => {
       {session !== null ? (
         <>
           {session?.user !== undefined && (
-            <div className='bg-gray-800'>
+            <div className='bg-gray-800 font-roboto'>
               <Head>
                 <title>Task Man || Profile</title>
                 <link rel='icon' href='/favicon.ico' />
               </Head>
 
               <Layout isInIndex={true}>
-                <div className=''>
+                <div>
                   <Link href='/' className='block'>
                     <span className=' inline-block  text-blue-300 border-b border-b-blue-300 cursor-pointer'>
                       &larr; Back
@@ -36,14 +38,23 @@ const ProfilePage: NextPage = () => {
                     Profile: {session.user?.name}
                   </span>
 
-                  <div className='relative h-40 w-40 overflow-hidden rounded-full border border-project_main'>
-                    {/* <Image
-                  ng-src={
-                    session.user?.image || 'https://i.imgur.com/62MNvNU.png'
-                  }
-                  src={session.user?.image || 'https://i.imgur.com/62MNvNU.png'}
-                  layout='fill'
-                /> */}
+                  <div className='relative h-40 w-40 overflow-hidden rounded-full border border-gray-600'>
+                    <Image
+                      loader={imageLoader}
+                      alt='profile_pic'
+                      unoptimized
+                      ng-src={
+                        session !== null
+                          ? session.user?.image
+                          : 'https://i.imgur.com/62MNvNU.png'
+                      }
+                      src={
+                        session !== null
+                          ? (session.user?.image as string)
+                          : 'https://i.imgur.com/62MNvNU.png'
+                      }
+                      layout='fill'
+                    />
                   </div>
                   {/* <Link href={`/task/${task?._id}/edit`}>
                 <div className="px-4 flex items-center rounded-md bg-teal-500 font-medium cursor-pointer">

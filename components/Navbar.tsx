@@ -10,9 +10,10 @@ import UserDropdownMenu from './UserDropdownMenu'
 
 interface NavbarProps {
   isInIndex: boolean
+  isInSignIn?: boolean
 }
 
-function Navbar({ isInIndex }: NavbarProps): JSX.Element {
+function Navbar({ isInIndex, isInSignIn = false }: NavbarProps): JSX.Element {
   const router = useRouter()
 
   const pushToNewTaskPage = async (): Promise<void> => {
@@ -45,15 +46,19 @@ function Navbar({ isInIndex }: NavbarProps): JSX.Element {
             />
           </div>
         ) : (
-          <div className='flex space-x-4 items-center'>
-            Not signed in <br />
-            <button
-              className='px-4 py-2 bg-teal-500 rounded-md'
-              onClick={async () => await signIn()}
-            >
-              Sign in
-            </button>
-          </div>
+          <>
+            {!isInSignIn && (
+              <div className='flex space-x-4 items-center'>
+                Not signed in <br />
+                <button
+                  className='px-4 py-2 bg-teal-500 rounded-md'
+                  onClick={async () => await signIn()}
+                >
+                  Sign in
+                </button>
+              </div>
+            )}
+          </>
         )}
 
         {isInIndex && (
@@ -61,7 +66,7 @@ function Navbar({ isInIndex }: NavbarProps): JSX.Element {
             <button
               onClick={pushToNewTaskPage}
               disabled={session === null}
-              className='flex items-center space-x-2 bg-teal-500 px-2 py-2 rounded-md font-medium'
+              className='flex items-center space-x-2 bg-teal-500 px-2 py-2 rounded-md font-medium disabled:bg-gray-300'
             >
               <AiOutlinePlus />
               <span>New Task</span>

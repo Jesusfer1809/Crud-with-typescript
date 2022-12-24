@@ -43,7 +43,7 @@ function TaskShowcase({ openModal }: TaskShowcaseProps): JSX.Element {
   }
 
   return (
-    <div>
+    <div className='flex flex-col space-y-8'>
       {tasks.map((task, index) => (
         <TaskComponent
           key={index}
