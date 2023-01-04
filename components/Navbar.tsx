@@ -33,7 +33,9 @@ function Navbar({ isInIndex, isInSignIn = false }: NavbarProps): JSX.Element {
       <div>
         <Link href='/'>
           <a>
-            <h1 className='font-medium py-2 md:text-lg'>Task Manager ⏲</h1>
+            <h1 className='font-medium py-2 md:text-lg 2xl:text-2xl'>
+              Task Manager ⏲
+            </h1>
           </a>
         </Link>
       </div>
@@ -42,7 +44,7 @@ function Navbar({ isInIndex, isInSignIn = false }: NavbarProps): JSX.Element {
           <div className='flex items-center'>
             <HiOutlineUserCircle
               onClick={toggleUser}
-              className='w-8 h-8 cursor-pointer'
+              className='w-8 h-8 cursor-pointer 2xl:w-10 2xl:h-10'
             />
           </div>
         ) : (
@@ -50,7 +52,7 @@ function Navbar({ isInIndex, isInSignIn = false }: NavbarProps): JSX.Element {
             {!isInSignIn && (
               <div className='flex space-x-4 items-center'>
                 <button
-                  className='px-4 py-2 bg-teal-500 rounded-md'
+                  className='px-4 py-2 bg-teal-500 rounded-md 2xl:text-xl'
                   onClick={async () => await signIn()}
                 >
                   Sign in
@@ -65,7 +67,7 @@ function Navbar({ isInIndex, isInSignIn = false }: NavbarProps): JSX.Element {
             <button
               onClick={pushToNewTaskPage}
               disabled={session === null}
-              className='flex items-center space-x-2 bg-teal-500 px-2 py-2 rounded-md font-medium disabled:bg-gray-300'
+              className='flex items-center space-x-2 bg-teal-500 px-2 py-2 2xl:px-3 2xl:py-3 rounded-md font-medium disabled:bg-gray-300 2xl:text-xl'
             >
               <AiOutlinePlus />
               <span>New Task</span>

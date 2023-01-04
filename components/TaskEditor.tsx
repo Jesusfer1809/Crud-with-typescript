@@ -81,12 +81,12 @@ function TaskEditor({ isEditing, prevTask }: TaskEditorProps): JSX.Element {
   return (
     <>
       <div className='flex justify-between'>
-        <h2 className='text-xl font-medium block'>
+        <h2 className='text-xl 2xl:text-3xl font-medium block'>
           {isEditing === true ? 'Edit Task' : 'New Task'}
         </h2>
 
         <Link href='/' className='block'>
-          <span className=' inline-block  text-blue-300 border-b border-b-blue-300 cursor-pointer'>
+          <span className=' inline-block  text-blue-300 border-b border-b-blue-300 cursor-pointer 2xl:text-xl'>
             &larr; Back
           </span>
         </Link>
@@ -97,7 +97,7 @@ function TaskEditor({ isEditing, prevTask }: TaskEditorProps): JSX.Element {
         className=' mt-12 flex flex-col space-y-6'
       >
         <fieldset>
-          <label htmlFor='title' className='block mb-1 text-lg'>
+          <label htmlFor='title' className='block mb-1 text-lg 2xl:text-2xl'>
             Title:
           </label>
           <input
@@ -107,12 +107,15 @@ function TaskEditor({ isEditing, prevTask }: TaskEditorProps): JSX.Element {
             placeholder='Task title...'
             onChange={handleChange}
             value={task?.title}
-            className='w-full px-4 py-2 rounded-sm text-gray-900 border-2 border-transparent  focus:outline-teal-500 focus:border-2 focus:border-teal-500'
+            className='w-full px-4 py-2 rounded-sm text-gray-900 border-2 border-transparent  focus:outline-teal-500 focus:border-2 focus:border-teal-500 mt-1 2xl:text-xl 2xl:py-3'
           />
         </fieldset>
 
         <fieldset>
-          <label htmlFor='description' className='block mb-1 text-lg'>
+          <label
+            htmlFor='description'
+            className='block mb-1 text-lg 2xl:text-2xl'
+          >
             Description:
           </label>
           <textarea
@@ -123,11 +126,11 @@ function TaskEditor({ isEditing, prevTask }: TaskEditorProps): JSX.Element {
             onChange={handleChange}
             value={task?.description}
             placeholder='Task description...'
-            className='w-full px-4 py-2 rounded-sm text-gray-900 border-2 border-transparent  focus:outline-teal-500 focus:border-2 focus:border-teal-500'
+            className='w-full px-4 py-2 rounded-sm text-gray-900 border-2 border-transparent  focus:outline-teal-500 focus:border-2 focus:border-teal-500 mt-1 2xl:text-xl 2xl:py-3'
           ></textarea>
         </fieldset>
 
-        <button className='w-full py-2 bg-teal-500 block rounded-sm'>
+        <button className='w-full py-2 bg-teal-500 block rounded-sm 2xl:text-xl 2xl:py-3'>
           Save
         </button>
       </form>

@@ -42,9 +42,11 @@ function UserDropdownMenu({ userOpen }: DropdownMenuProps): JSX.Element {
             </div>
 
             <div className='flex flex-col'>
-              <span className='text-xs text-gray-600'>Welcome!</span>
+              <span className='text-xs text-gray-600 2xl:text-base'>
+                Welcome!
+              </span>
 
-              <span className='text-lg'>{session.user?.name}</span>
+              <span className='text-lg 2xl:text-2xl'>{session.user?.name}</span>
             </div>
           </div>
 
@@ -52,7 +54,7 @@ function UserDropdownMenu({ userOpen }: DropdownMenuProps): JSX.Element {
             <div className='border-t-2 border-gray-900'></div>
             <li className='p-2'>
               <Link href='/profile'>
-                <a href='#' className='cursor-pointer'>
+                <a href='#' className='cursor-pointer 2xl:text-xl'>
                   Edit Profile
                 </a>
               </Link>
@@ -61,7 +63,7 @@ function UserDropdownMenu({ userOpen }: DropdownMenuProps): JSX.Element {
             <div className='border-t '></div>
 
             <li className='p-2'>
-              <a href='#' className='cursor-pointer'>
+              <a href='#' className='cursor-pointer 2xl:text-xl'>
                 Account Activity
               </a>
             </li>
@@ -71,7 +73,7 @@ function UserDropdownMenu({ userOpen }: DropdownMenuProps): JSX.Element {
             <li className='p-2'>
               <span
                 onClick={async () => await signOut()}
-                className='cursor-pointer'
+                className='cursor-pointer 2xl:text-xl'
               >
                 Log Out
               </span>
